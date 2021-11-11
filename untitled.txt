@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> // for rand()
+//#include <stdbool.h>
+
+int callQst(){
+                float r1, r2;
+                r1 = rand()*0.001;
+                r2 = rand()*0.001;
+                printf("\n is %f less than %f ? \nEnter your response : \n Y for true or N for false \n", r1, r2);
+
+                return (r1 < r2);
+}
+
+
+void main(){
+   srand(time(0));
+    int score = 0;
+////    bool Evaluation = false;
+    int i = 1; //init du boucle
+    int qstNum = 4; //num of questions
+    int answer [qstNum];
+//    initializeArray(answer);
+
+    for(i = 1; i <= qstNum; i++){
+
+        printf("QST %d : ", i);
+        int repCorrect = callQst();   // if r1 > r2 then add 1 point to score
+        scanf(" %d", &answer[i - 1]);
+        if(answer[i - 1] == repCorrect){
+                printf("Réponse correcte BRAVO!");
+                score += 1;
+                }
+        else { printf("Réponse incorrecte :(");
+            }
+    }
+    printf("%c", answer[1]);
+
+    printf("Your results are %d pts ", score);
+}

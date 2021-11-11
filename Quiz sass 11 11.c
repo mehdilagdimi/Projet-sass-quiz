@@ -1,15 +1,30 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h> // for rand()
+//#include <string.h>
 //#include <stdbool.h>
 
-int callQst(){
+int callQsts1(){
                 float r1, r2;
                 r1 = rand()*0.001;
                 r2 = rand()*0.001;
                 printf("\n is %f less than %f ? \nEnter your response : \n 1 for true or 0 for false \n", r1, r2);
 
                 return (r1 < r2);
+}
+//callQsts2 can be used for pre-defined qsts,  switch statement is used
+int callQsts2(int i) {
+    switch (i)
+        {
+            case 1: printf("question 1 here : \n1.First choice : *** \n2.Second choice : ***");
+                    return 1;  //remplace 1 with correct choice
+            case 2: printf("qst 2 here: ");
+                    return 2;
+            case 3: printf("qst 3 here :");
+                    return 1;
+            case 4 : printf("qst 4 here");
+                    return 2;
+        }
+
 }
 
 void summaryAnswers(int ansArray[], int arrLength){
@@ -34,15 +49,21 @@ void main(){
     for(i = 1; i <= qstNum; i++){
 
         printf("\n QST %d : ", i);
-        int repCorrect = callQst();   // if r1 > r2 then add 1 point to score
+//      First approach to list questions : using callsQsts1
+//      int repCorrect = callQsts1();   // if r1 > r2 then add 1 point to score, we can use callQsts directly inside the next if statement
+
+//      Second approch for running quiz using callQsts2
+        int repCorrect = callQsts2(i);
         scanf(" %d", &answer[i - 1]);
         if(answer[i - 1] == repCorrect){
                 printf("\nRéponse correcte BRAVO!");
-                score += 1;
+                score += 3;
                 }
-        else { printf("\nRéponse incorrecte :(");
+        else {
+                printf("\nRéponse incorrecte :(");
             }
     }
+
 
     summaryAnswers(answer, qstNum);
 
